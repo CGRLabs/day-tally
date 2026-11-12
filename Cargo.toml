@@ -1,0 +1,13 @@
+[package]
+name = "horizon-day-tally"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT"
+description = "Day Tally: the day of the world, in Roman numerals, in the bottom left corner"
+
+[lib]
+# This exact source is also injected as a same-crate module by horizon-mixins.
+path = "mixins/day_tally/runtime.rs"
+
+[workspace]

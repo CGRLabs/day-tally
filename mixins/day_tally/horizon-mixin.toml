@@ -1,0 +1,47 @@
+[mod]
+id = "day_tally"
+version = "0.1.0"
+priority = 100
+
+# The rendering adapters depend on this revision's model and animation layout.
+[compatibility]
+horizon_revision = "36f4bc00d6fc644f1ad118ddd926a997a034cb48"
+
+[[module]]
+id = "day_tally"
+file = "crates/horizon-client/src/lib.rs"
+name = "day_tally"
+source = "runtime.rs"
+visibility = "pub"
+
+[[injection]]
+id = "mod-entry"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_mods"
+helper = "list_helper.rs"
+bindings = [
+    { name = "mods", ty = "&mut Vec<crate::game::native_hooks::NativeMod>", value = "&mut *mods" },
+]
+
+# The tally itself: the bottom left corner, in Roman numerals.
+[[injection]]
+id = "day-tally"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_hud"
+helper = "hud_helper.rs"
+bindings = [
+    { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+    { name = "batch", ty = "&mut horizon_client::hud::HudBatch", value = "batch" },
+    { name = "corners", ty = "&mut horizon_client::extras_hud::Corners", value = "corners" },
+]
+
+# The server half: tell the content mod that the tally is here.
+[[injection]]
+id = "flag"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_level_tick_post"
+helper = "flag_helper.rs"
+bindings = [
+    { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+    { name = "dimension", ty = "&str", value = "dimension" },
+]
