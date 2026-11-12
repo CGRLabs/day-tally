@@ -1,23 +1,27 @@
 # Day Tally
 
-The day of the world, in the bottom left corner, in Roman numerals.
+The day of the world, in the bottom left corner, in Roman numerals, on a dark plaque with a gold
+frame.
 
 > **XII**
-> *day*
+> *DAY*
 
-It appears the moment the day turns and goes away again a few seconds later — so
-it tells you that a night passed, and then it leaves the screen to the world.
+It appears the moment the day turns and goes away again a few seconds later — so it tells you that
+a night passed, and then it leaves the screen to the world.
 
 ## What it does
 
-- Draws the day of the world in the **bottom left corner**, in **Roman numerals**, on a dark
-  parchment panel, big enough to read from across the room.
+- Draws the day of the world in **Roman numerals**, on a gold-framed plaque in the **bottom left
+  corner**, big enough to read from across the room.
 - **Shows itself when the day changes**, and shrinks away over the last two seconds.
-- Reads the **world's own clock** — the same number `/time query day` gives. It keeps no count
-  of its own.
+- Reads the **world's own clock** — the same number `/time query day` gives. It keeps no count of
+  its own.
 - Nothing else. No items, no blocks, no screens, no settings.
 
 > The Romans had no zero, so the first day reads **N** — *nulla*.
+
+The numerals are the game's own pixel font, grown three times over, so they are blocky rather than
+calligraphic. They read as a tally, which is the point.
 
 ## Install
 

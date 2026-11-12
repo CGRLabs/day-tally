@@ -27,12 +27,13 @@ comes back when the day turns.
 
 ## Release facts
 
-- File size: **4 396 bytes**
-- SHA-256: `049a297d08970211511a6dd424c06d050bc8afa43600c55afd3242abab3f7780`
+- File size: **5 232 bytes**
+- SHA-256: `ac10732ed0c91718d87f851b1fdf1b0e35e3f37939706c7b646bf8d7115371c9`
 - Pinned to Horizon `36f4bc00d6fc644f1ad118ddd926a997a034cb48`, horizon-mixins
   `d9c83d7096b7ea5b83678da2efdfd6161f74997e`, mixin schema 6
 - The mod inspector: **0 errors**, 6 files verified in the bundle
 - Signature: minisign, verified against the Hub public key (`signature: VALID`)
+- Unit tests: 6 of 6 pass (`cargo test -p horizon-client --lib day_tally::tests`)
 
 ## What it does
 
@@ -70,14 +71,25 @@ tally in the corner. A server without this mod still gets the line of text.
 
 | Check | Result |
 | --- | --- |
-| The tally appears | yes — the plaque with the numeral in the bottom-left corner |
+| The tally appears | yes — a gold-framed plaque with the numeral in the bottom-left corner |
 | The world was on day | 0 — the numeral reads **N** (*nulla*) |
 | It goes away again | yes — the corner is empty after the tally's time is up |
 | A new day brings it back | yes — after `/time add 24000` the world is on day **1** and the numeral reads **I** |
 | The content mod stands down | yes — no `DAY 1` line on the action bar while the tally is showing |
 
-The proof's own pictures show it: `target/proof/day-tally-v01-shown.png` (the tally), `-gone.png`
-(the empty corner), `-new-day.png` (the tally on day 1).
+The proof's own pictures show it: `target/proof/day-tally-v01-shown.png` (the tally on day 0),
+`-gone.png` (the empty corner), `-new-day.png` (the tally on day 1).
+
+Unit tests, 6 of 6 pass (`cargo test -p horizon-client --lib day_tally::tests`):
+
+| Test | What it holds |
+| --- | --- |
+| `the_first_day_is_nulla` | day 0 reads "N" — the Romans had no zero |
+| `the_small_numerals_are_right` | I, II, III, IV, V, IX, XIV |
+| `the_bigger_numerals_are_right` | XL, XLIX, XC, CD, CM, MCMXC, MMXXVI |
+| `a_day_is_the_clock_divided_by_the_length_of_a_day` | the day is the clock over 24 000 |
+| `the_tally_shows_and_then_goes` | the tally shows at full size |
+| `the_same_day_does_not_note_the_tally_again` | the timer does not restart on the same day |
 
 ## Description (paste into the Markdown box)
 
