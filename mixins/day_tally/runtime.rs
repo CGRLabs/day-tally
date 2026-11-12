@@ -1,5 +1,5 @@
-// Day Tally: the day of the world, in the bottom left corner, in Roman
-// numerals.
+// Day Tally: the day of the world, in the bottom left corner, in plain
+// numbers.
 //
 // The tally appears when the day turns and goes away again a few seconds
 // later, so it tells you the moment a night passes and then leaves the screen
@@ -10,9 +10,9 @@ use std::sync::{LazyLock, Mutex};
 use std::time::{Duration, Instant};
 
 pub const ID: &str = "day_tally";
-pub const VERSION: &str = "0.1.0";
+pub const VERSION: &str = "0.2.0";
 pub const DESCRIPTION: &str =
-    "The day of the world, in Roman numerals, in the bottom left corner. It appears when the day turns, and goes away again.";
+    "The day of the world, big, in the bottom left corner. It appears when the day turns, and goes away again.";
 
 /// How long the tally stays up after the day changes.
 pub const SHOW_FOR: Duration = Duration::from_secs(5);
@@ -25,38 +25,6 @@ pub const DAY: i64 = 24_000;
 /// The day the world is on.
 pub fn day_of(day_time: i64) -> i64 {
     day_time.div_euclid(DAY)
-}
-
-/// The day in Roman numerals. The Romans had no zero, so the first day is
-/// "N" for nulla.
-pub fn roman(day: i64) -> String {
-    const NUMERALS: &[(i64, &str)] = &[
-        (1000, "M"),
-        (900, "CM"),
-        (500, "D"),
-        (400, "CD"),
-        (100, "C"),
-        (90, "XC"),
-        (50, "L"),
-        (40, "XL"),
-        (10, "X"),
-        (9, "IX"),
-        (5, "V"),
-        (4, "IV"),
-        (1, "I"),
-    ];
-    if day <= 0 {
-        return "N".to_owned();
-    }
-    let mut left = day;
-    let mut out = String::new();
-    for (value, name) in NUMERALS {
-        while left >= *value {
-            out.push_str(name);
-            left -= value;
-        }
-    }
-    out
 }
 
 /// The day, and when it turned.
@@ -115,32 +83,10 @@ mod tests {
     use super::*;
 
     #[test]
-    fn the_first_day_is_nulla() {
-        // The Romans had no zero.
-        assert_eq!(roman(0), "N");
-        assert_eq!(roman(-1), "N");
-    }
-
-    #[test]
-    fn the_small_numerals_are_right() {
-        assert_eq!(roman(1), "I");
-        assert_eq!(roman(2), "II");
-        assert_eq!(roman(3), "III");
-        assert_eq!(roman(4), "IV");
-        assert_eq!(roman(5), "V");
-        assert_eq!(roman(9), "IX");
-        assert_eq!(roman(14), "XIV");
-    }
-
-    #[test]
-    fn the_bigger_numerals_are_right() {
-        assert_eq!(roman(40), "XL");
-        assert_eq!(roman(49), "XLIX");
-        assert_eq!(roman(90), "XC");
-        assert_eq!(roman(400), "CD");
-        assert_eq!(roman(900), "CM");
-        assert_eq!(roman(1990), "MCMXC");
-        assert_eq!(roman(2026), "MMXXVI");
+    fn the_day_is_a_plain_number() {
+        // The tally shows the day as a plain number, not Roman numerals.
+        assert_eq!(0.to_string(), "0");
+        assert_eq!(12.to_string(), "12");
     }
 
     #[test]

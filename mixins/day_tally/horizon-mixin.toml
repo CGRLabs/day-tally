@@ -1,6 +1,6 @@
 [mod]
 id = "day_tally"
-version = "0.1.0"
+version = "0.2.0"
 priority = 100
 
 # The rendering adapters depend on this revision's model and animation layout.
@@ -23,7 +23,7 @@ bindings = [
     { name = "mods", ty = "&mut Vec<crate::game::native_hooks::NativeMod>", value = "&mut *mods" },
 ]
 
-# The tally itself: the bottom left corner, in Roman numerals.
+# The tally itself: the bottom left corner, in plain numbers.
 [[injection]]
 id = "day-tally"
 kind = "HEAD"

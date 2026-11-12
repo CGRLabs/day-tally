@@ -1,35 +1,27 @@
 # Day Tally
 
-The day of the world, in the bottom left corner, in Roman numerals, on a dark plaque with a gold
-frame.
+The day of the world, big, in the bottom left corner.
 
-> **XII**
-> *DAY*
+> **12**
 
-It appears the moment the day turns and goes away again a few seconds later — so it tells you that
-a night passed, and then it leaves the screen to the world.
+It appears the moment the day turns and goes away again a few seconds later — so it tells you that a
+night passed, and then it leaves the screen to the world.
 
 ## What it does
 
-- Draws the day of the world in **Roman numerals**, on a gold-framed plaque in the **bottom left
-  corner**, big enough to read from across the room.
+- Shows the day of the world, **big**, in the **bottom left corner**.
 - **Shows itself when the day changes**, and shrinks away over the last two seconds.
-- Reads the **world's own clock** — the same number `/time query day` gives. It keeps no count of
-  its own.
+- Reads the **world's own clock** — the same number `/time query day` gives. It keeps no count of its
+  own.
 - Nothing else. No items, no blocks, no screens, no settings.
-
-> The Romans had no zero, so the first day reads **N** — *nulla*.
-
-The numerals are the game's own pixel font, grown three times over, so they are blocky rather than
-calligraphic. They read as a tally, which is the point.
 
 ## Install
 
 1. Install the mod and enable it in Options → Mods, then restart the game.
 2. Play. Watch the corner when the night passes.
 
-It runs in single player and on a LAN host — the places where the client and the world are the
-same machine.
+It runs in single player and on a LAN host — the places where the client and the world are the same
+machine.
 
 ## With the Day Counter content mod
 
