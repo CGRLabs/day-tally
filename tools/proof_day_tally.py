@@ -4,6 +4,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
 from pathlib import Path
@@ -26,6 +27,9 @@ def main():
     shutil.copy2(INSTALL / "horizon-mods.txt", home / "horizon-mods.txt")
     log = (OUT / "day-tally-v01.log").open("w", encoding="utf-8")
     report = {"scratch_home": str(home)}
+    # The client to test: this build by default, or one named on the command line.
+    game = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "target" / "horizon-cargo" / "fast" / "horizon-client.exe"
+    report["game"] = str(game)
 
     def say(msg):
         print(msg, flush=True)
@@ -60,7 +64,7 @@ def main():
     try:
         say(f"scratch home: {home}")
         say("launching VISIBLE window...")
-        ctl("launch", "--game", str(ROOT / "target" / "horizon-cargo" / "fast" / "horizon-client.exe"),
+        ctl("launch", "--game", str(game),
             "--world", "DayTallyV01", "--creative", "--wait", "--render-distance", "6",
             "--resources", str(INSTALL / ".local" / "horizon-client" / "26.3"),
             "--test-terrain", timeout=420)
