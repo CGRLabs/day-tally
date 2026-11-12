@@ -80,6 +80,10 @@ tally in the corner. A server without this mod still gets the line of text.
 The proof's own pictures show it: `target/proof/day-tally-v01-shown.png` (the tally on day 0),
 `-gone.png` (the empty corner), `-new-day.png` (the tally on day 1).
 
+The same proof was also run against a client built with **barrel_roll and Day Tally together** (the
+two bundles applied cleanly side by side: 9 injections, 2 modules) — the tally still shows, still
+goes away, and still comes back on the new day.
+
 Unit tests, 6 of 6 pass (`cargo test -p horizon-client --lib day_tally::tests`):
 
 | Test | What it holds |
